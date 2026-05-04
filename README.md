@@ -1,10 +1,9 @@
-# agentest
-
 <p align="center">
-  <img src="assets/logo.png" alt="agentest-kit" width="180" />
+  <img src="assets/logo.png" alt="agentest-kit" width="300" />
 </p>
 
-> 面向 LLM / Agent 的轻量测试框架 — AI 界的 Vitest
+> [!IMPORTANT]
+> ⚡️ 面向 LLM / Agent 的轻量测试框架 — AI 界的 Vitest
 
 [![npm version](https://img.shields.io/npm/v/agentest-kit.svg?style=flat-square)](https://www.npmjs.com/package/agentest-kit)
 [![license](https://img.shields.io/npm/l/agentest-kit.svg?style=flat-square)](LICENSE)
