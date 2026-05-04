@@ -1,16 +1,41 @@
 {
   "name": "agentest-kit",
   "version": "0.0.1",
-  "description": "AI 系统测试框架 — 面向 LLM/Agent 的轻量断言测试工具，AI 界的 Vitest",
+  "description": "⚡️ AI 系统测试框架 — 面向 LLM/Agent 的轻量断言测试工具，AI 界的 Vitest",
   "type": "module",
   "main": "src/index.js",
   "exports": "./src/index.js",
-  "keywords": ["ai", "testing", "llm", "agent", "assertion", "vitest"],
+  "keywords": [
+    "ai",
+    "testing",
+    "llm",
+    "agent",
+    "assertion",
+    "evaluation",
+    "vitest",
+    "evals"
+  ],
   "license": "MIT",
+  "author": "Sunny",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sunny-117/agentest.git"
+  },
+  "homepage": "https://github.com/Sunny-117/agentest#readme",
+  "bugs": {
+    "url": "https://github.com/Sunny-117/agentest/issues"
+  },
   "engines": {
     "node": ">=16"
   },
   "files": [
-    "src/"
-  ]
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "playground:simple": "node playground/simple/run.js",
+    "playground:advanced": "node playground/advanced/run.js",
+    "playground": "npm run playground:simple && npm run playground:advanced"
+  }
 }

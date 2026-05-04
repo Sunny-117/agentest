@@ -1,0 +1,32 @@
+[
+  {
+    "case_id": "C001",
+    "query": "我的订单还没发货，帮我查一下物流状态",
+    "expected_keywords": ["order_tracking"],
+    "difficulty": "easy",
+    "notes": "最基础的订单查询场景"
+  },
+  {
+    "case_id": "C002",
+    "query": "我想申请退款，订单号是 1234567890",
+    "expected_keywords": ["order_refund"],
+    "difficulty": "medium"
+  },
+  {
+    "case_id": "C003",
+    "query": "账号登录失败了，一直报错说密码不对",
+    "expected_keywords": ["account_management", "technical_support"],
+    "difficulty": "medium",
+    "notes": "Mock 只能检测到 account_management，technical_support 不会命中，展示 PARTIAL"
+  },
+  {
+    "case_id": "C004",
+    "query": "这个 case 暂时有问题，先跳过",
+    "skip": true
+  },
+  {
+    "case_id": "C005",
+    "query": "多意图组合场景待补充",
+    "todo": true
+  }
+]

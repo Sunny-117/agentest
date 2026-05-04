@@ -1,0 +1,44 @@
+[
+  {
+    "case_id": "C001",
+    "query": "我的订单已经下单三天了，还没有发货",
+    "expected_keywords": ["order_tracking"],
+    "difficulty": "easy"
+  },
+  {
+    "case_id": "C002",
+    "query": "我想退货，商品质量有问题，帮我查一下退款进度",
+    "expected_keywords": ["order_refund", "order_tracking"],
+    "difficulty": "medium",
+    "notes": "同时命中两个 category"
+  },
+  {
+    "case_id": "C003",
+    "query": "App 一直闪退，登录页面加载不出来",
+    "expected_keywords": ["technical_support", "account_management"],
+    "difficulty": "medium"
+  },
+  {
+    "case_id": "C004",
+    "query": "我想买一款适合家用的扫地机器人，帮我推荐几款",
+    "expected_keywords": ["product_recommendation"],
+    "difficulty": "easy"
+  },
+  {
+    "case_id": "C005",
+    "query": "收到的商品破损了，我要退款，同时帮我查一下售后流程",
+    "expected_keywords": ["order_refund", "technical_support", "售后"],
+    "difficulty": "hard",
+    "notes": "多意图场景，展示综合评分"
+  },
+  {
+    "case_id": "C006",
+    "query": "这个场景暂时有问题，先跳过",
+    "skip": true
+  },
+  {
+    "case_id": "C007",
+    "query": "多意图组合场景待补充",
+    "todo": true
+  }
+]

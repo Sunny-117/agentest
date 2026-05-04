@@ -1,6 +1,20 @@
-# agentest-kit
+# agentest
+
+<p align="center">
+  <img src="assets/logo.png" alt="agentest-kit" width="180" />
+</p>
 
 > 面向 LLM / Agent 的轻量测试框架 — AI 界的 Vitest
+
+[![npm version](https://img.shields.io/npm/v/agentest-kit.svg?style=flat-square)](https://www.npmjs.com/package/agentest-kit)
+[![license](https://img.shields.io/npm/l/agentest-kit.svg?style=flat-square)](LICENSE)
+[![node](https://img.shields.io/node/v/agentest-kit.svg?style=flat-square)](package.json)
+[![zero deps](https://img.shields.io/badge/dependencies-0-brightgreen?style=flat-square)](#)
+
+
+<p align="center">
+  <img src="assets/record.gif" alt="agentest-kit demo" width="700" />
+</p>
 
 ---
 
@@ -43,9 +57,13 @@ npm install agentest-kit
 yarn add agentest-kit
 ```
 
-### 最小示例
+> 想直接跑起来看效果？跳到 [Playground →](#playground)
 
-**第一步**：实现适配器（对接你的 AI 系统）
+---
+
+### 3 步接入
+
+**第一步：实现适配器**（对接你的 AI 系统）
 
 ```js
 // adapters/my-llm.js
@@ -86,20 +104,20 @@ export function createMyAdapter(config) {
 }
 ```
 
-**第二步**：编写测试用例（`cases.json`，零代码）
+**第二步：编写测试用例**（`cases.json`，零代码）
 
 ```json
 [
   {
     "case_id": "C001",
-    "query": "帮我看看最近7天的消费情况",
-    "expected_keywords": ["account_report", "消费"],
+    "query": "我的订单已经三天了还没发货，帮我查一下",
+    "expected_keywords": ["order_tracking"],
     "difficulty": "easy"
   },
   {
     "case_id": "C002",
-    "query": "我的点击率突然掉了，帮我诊断",
-    "expected_keywords": ["diagnosis_dashboard", "点击率"],
+    "query": "App 升级后一直闪退，无法正常登录",
+    "expected_keywords": ["technical_support", "account_management"],
     "difficulty": "medium"
   },
   {
@@ -112,7 +130,7 @@ export function createMyAdapter(config) {
 
 字段全部可选，只有 `case_id` 和 `query` 是必填。`skip: true` 跳过该 case，`todo: true` 标记待实现，两者均不计入指标。
 
-**第三步**：编写入口（`evaluator.js`）
+**第三步：编写入口**（`evaluator.js`）
 
 ```js
 // evaluator.js
@@ -167,20 +185,20 @@ node evaluator.js
 import { test } from 'agentest-kit';
 
 // 自定义断言
-test('账户诊断', async (ctx) => {
-    const result = await ctx.run('我的消费一直在下降，帮我诊断');
+test('技术支持', async (ctx) => {
+    const result = await ctx.run('App 升级之后一直崩溃，无法正常打开');
     ctx.expect(result).toHaveStructure();
-    ctx.expect(result).toHaveIntent('diagnosis_dashboard');
+    ctx.expect(result).toHaveIntent('technical_support');
     ctx.expect(result.quality_score).toBeGreaterThan(3);
 });
 
 // 多轮对话
 test('追问场景', async (ctx) => {
-    const r1 = await ctx.run('查看账户报告');
-    ctx.expect(r1).toHaveIntent('account_report');
+    const r1 = await ctx.run('帮我查一下最新的订单物流');
+    ctx.expect(r1).toHaveIntent('order_tracking');
 
     const sessionId = r1.raw?.data?.sessionId;
-    const r2 = await ctx.run({ query: '消费最多的是哪个时段？', sessionId });
+    const r2 = await ctx.run({ query: '这个订单能申请退款吗？', sessionId });
     ctx.expect(r2.intent_matched).toBe(true);
 });
 
@@ -433,6 +451,22 @@ export function createMySystemAdapter(config) {
 
 ---
 
+## Playground
+
+本仓库提供两个开箱即用的示例，使用内置 Mock 适配器，**无需任何 API Key**，`node` 直接运行：
+
+```bash
+# 简单版 — 5 分钟了解核心概念（数据驱动）
+node playground/simple/run.js
+
+# 高阶版 — 脚本驱动、多轮对话、.not 断言、阈值判断
+node playground/advanced/run.js
+```
+
+详见 [playground/README.md](playground/README.md)。
+
+---
+
 ## 技术设计
 
 ### 架构分层
@@ -517,3 +551,21 @@ tests/*.test.js  │                      │
 | **快照测试** | `evaluate()` 保存 normalized 结果快照，下次自动对比 |
 | **HTML 报告** | reporter 增加 `saveHtmlReport(results)` |
 | **Watch 模式** | 监听 `tests/*.test.js` 变化，自动重跑受影响的 case |
+
+---
+
+## Contributing
+
+欢迎提交 Issue 和 PR！
+
+```bash
+git clone https://github.com/Sunny-117/agentest.git
+cd agentest
+node playground/simple/run.js    # 验证环境正常
+```
+
+---
+
+## License
+
+[MIT](LICENSE)
