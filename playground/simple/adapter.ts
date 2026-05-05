@@ -70,6 +70,7 @@ export const adapter = defineAdapter({
 
     return {
       ...callResult,
+      case_id: callResult.case_id ?? '',
       structure_ok,
       intent_matched,
       normalized_categories: categories,
