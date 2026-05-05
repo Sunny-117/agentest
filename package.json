@@ -1,6 +1,6 @@
 {
   "name": "agentest-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "⚡️ AI 系统测试框架 — 面向 LLM/Agent 的轻量断言测试工具，AI 界的 Vitest",
   "type": "module",
   "main": "./dist/index.cjs",
