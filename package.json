@@ -3,8 +3,21 @@
   "version": "0.0.1",
   "description": "⚡️ AI 系统测试框架 — 面向 LLM/Agent 的轻量断言测试工具，AI 界的 Vitest",
   "type": "module",
-  "main": "src/index.js",
-  "exports": "./src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "keywords": [
     "ai",
     "testing",
@@ -29,13 +42,26 @@
     "node": ">=16"
   },
   "files": [
-    "src/",
+    "dist/",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "playground:simple": "node playground/simple/run.js",
-    "playground:advanced": "node playground/advanced/run.js",
-    "playground": "npm run playground:simple && npm run playground:advanced"
+    "dev": "tsx playground/simple/run.ts",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint ./src",
+    "format": "oxfmt format ./src",
+    "playground:simple": "tsx playground/simple/run.ts",
+    "playground:advanced": "tsx playground/advanced/run.ts",
+    "playground": "pnpm run playground:simple && pnpm run playground:advanced"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
+    "tsdown": "^0.21.10",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
   }
 }

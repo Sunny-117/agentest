@@ -1,0 +1,20 @@
+{
+  "categories": {
+    "correctness": "warn",
+    "suspicious": "warn",
+    "pedantic": "off",
+    "perf": "off",
+    "restriction": "off",
+    "style": "off"
+  },
+  "rules": {
+    "no-underscore-dangle": ["warn", {
+      "allow": ["_registry", "_normalize", "_pct", "_value", "_negated", "_check", "_makeSkipResult", "_makeTodoResult", "_toAdapterInput", "_runFnTest", "_metricLine", "_sessions"]
+    }],
+    "capitalized-comments": "off",
+    "consistent-type-imports": "off",
+    "func-style": "off",
+    "no-console": "off"
+  },
+  "ignorePatterns": ["dist", "node_modules", "playground"]
+}
